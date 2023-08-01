@@ -1,40 +1,81 @@
 <!DOCTYPE html>
-<html >
+<html>
 
 <head>
   <meta charset="UTF-8">
   <title>ML API</title>
   <link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
-<link href='https://fonts.googleapis.com/css?family=Arimo' rel='stylesheet' type='text/css'>
-<link href='https://fonts.googleapis.com/css?family=Hind:300' rel='stylesheet' type='text/css'>
-<link href='https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
-
-  
+  <link href='https://fonts.googleapis.com/css?family=Arimo' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Hind:300' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+    integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
 </head>
 
-<body>
- <div class="login">
-	<h1>California House Price Prediction</h1>
+<body style="background-color:lightcoral;">
+  <div class="container">
+    <div class="login">
+      <div class="card-header" style="text-align: center">
+        <h1>California House Price Prediction</h1>
+      </div>
+      <div class="card-body">
+        <div class="col-12" style="text-align: left">
+          <h5>This app predicts the House Price based on details. Try filling the details below: </h5>
+        </div>
+        <br>
+        <!-- Main Input For Receiving Query to our ML -->
+        <form action="{{ url_for('predict')}}" method="post">
+          <div class="mb-3">
+            <label class="form-label">Median Income:</label>
+            <input class="form-control" type="text" name="MedInc" placeholder="MedInc" required="required" />
+          </div>
 
-     <!-- Main Input For Receiving Query to our ML -->
-    <form action="{{ url_for('predict')}}"method="post">
-      <input type="text" name="MedInc" placeholder="MedInc" required="required" /><br>
-    	<input type="text" name="HouseAge" placeholder="HouseAge" required="required" /><br>
-        <input type="text" name="AveRooms" placeholder="AveRooms" required="required" /><br>
-        <input type="text" name="AveBedrms" placeholder="AveBedrms" required="required" /><br>
-        <input type="text" name="Population" placeholder="Population" required="required" /><br>
-        <input type="text" name="AveOccup" placeholder="AveOccup" required="required" /><br>
-        <input type="text" name="Latitude" placeholder="Latitude" required="required" /><br>
-        <input type="text" name="Longitude" placeholder="Longitude" required="required" /><br>
-        <hr>
-        <button type="submit" class="btn btn-primary btn-block btn-large">Predict</button>
-    </form>
+          <div class="mb-3">
+            <label class="form-label">Median House Age:</label>
+            <input class="form-control" type="text" name="HouseAge" placeholder="HouseAge" required="required" />
+          </div>
 
-   <br>
-   <br>
-   
- </div>
- {{prediction_text}}
+          <div class="mb-3">
+            <label class="form-label">Average Number of Rooms:</label>
+            <input class="form-control" type="text" name="AveRooms" placeholder="AveRooms" required="required" />
+          </div>
 
+          <div class="mb-3">
+            <label class="form-label">Average Number of Bedrooms:</label>
+            <input class="form-control" type="text" name="AveBedrms" placeholder="AveBedrms" required="required" />
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label">Population:</label>
+            <input class="form-control" type="text" name="Population" placeholder="Population" required="required" />
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label">Average Number of Household Members:</label>
+            <input class="form-control" type="text" name="AveOccup" placeholder="AveOccup" required="required" />
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label">Latitude:</label>
+            <input class="form-control" type="text" name="Latitude" placeholder="Latitude" required="required" />
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label">Longitude:</label>
+            <input class="form-control" type="text" name="Longitude" placeholder="Longitude" required="required" />
+          </div>
+          <hr>
+          <div class="mb-3">
+            <button type="submit" class="btn btn-primary btn-block btn-large">Predict</button>
+          </div>
+        </form>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-12" style="text-align: center">
+        <h4>{{prediction_text}}</h4>
+      </div>
+    </div>
+  </div>
 </body>
 </html>
